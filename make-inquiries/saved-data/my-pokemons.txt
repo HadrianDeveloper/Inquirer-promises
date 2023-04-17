@@ -1,0 +1,13 @@
+My saved Pokemons!
+
+Pokemon name: drowzee
+Pokemon ID: 96
+Abilities: insomnia, forewarn, inner-focus, 
+
+Pokemon name: annihilape
+Pokemon ID: 979
+Abilities: vital-spirit, inner-focus, defiant, 
+
+Pokemon name: braixen
+Pokemon ID: 654
+Abilities: blaze, magician, 

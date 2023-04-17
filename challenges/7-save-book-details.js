@@ -2,12 +2,16 @@ const axios = require('axios');
 const inquirer = require('inquirer');
 const {writeFile} = require('fs/promises');
 
+
 const questions = [
     {type: 'input', name: 'author', message: 'Search for an author:'},
     {type: 'input', name: 'title', message: 'Search for a book:'}
 ];
 
+console.log('myPokes')
+
 function searchForBook() {
+    
     inquirer
         .prompt(questions)
         .then(({author, title}) => {
