@@ -1,10 +1,5 @@
-# fun-promises-playground
-
-To get used to using promises, we have put together some challenges below for you to complete. Use Node to run your code for each challenge, e.g.
-
-```bash
-node ./challenges/1-read-and-log.js
-```
+# Project overview
+In this project, I create a Command Line Interface using the Inquirer.js package which enables users to search and save data from two external APIs: GoogleBooks, PokemonAPI. Async functionality is handled using Promises, Axios and fs/promises libraries.
 
 ## Challenges
 
