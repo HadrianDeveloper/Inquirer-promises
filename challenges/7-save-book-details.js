@@ -8,8 +8,6 @@ const questions = [
     {type: 'input', name: 'title', message: 'Search for a book:'}
 ];
 
-console.log('myPokes')
-
 function searchForBook() {
     
     inquirer
