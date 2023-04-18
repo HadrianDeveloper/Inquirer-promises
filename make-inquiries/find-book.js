@@ -7,22 +7,7 @@ axios.defaults.baseURL = 'https://www.googleapis.com/books/v1/';
 const dataFolderPath = `${__dirname}/saved-data`;
 
 function findABook() {
-
-    // const searchQs = [
-    //     {type: 'input', name: 'author', message: 'Enter author\'s name'}, 
-    //     {type: 'input', name: 'title', message: 'Enter book title'}
-    // ];
-    // const selectBookQs = [
-    //     {type: 'list', choices: [], name: 'selected', message: '\nSelect a book to save:\n'}
-    // ];
-    // const repeatQ = [
-    //     {type: 'confirm', message: '\nWould you like to add another book to your list?', name: 'addAnother'}
-    // ];
-    // const errorQ = [
-    //     {type: 'confirm', message: '\nNo results for that search! Start again?', name: 'startAgain'}
-    // ];
-
-    inquirer
+  inquirer
     .prompt(q.bookSearch)
     .then(({author, title}) => {
         spinMaster('Fetching books from GoogleAPI...');
@@ -58,11 +43,10 @@ function findABook() {
         if (addAnother) findABook()
     })
     .catch((err) => {
-        console.log(err);
         inquirer.prompt(q.tryAgain)
             .then(({startAgain}) => {
                 if (startAgain) findABook()
-            })
+            });
     })
 };
 
