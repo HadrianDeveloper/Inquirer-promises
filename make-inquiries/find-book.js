@@ -1,27 +1,25 @@
 const inquirer = require('inquirer');
 const axios = require('axios');
 const {writeFile, readFile} = require('fs/promises');
-const Spinner = require('cli-spinner').Spinner;
+const { spinMaster } = require('./utils');
 
 axios.defaults.baseURL = 'https://www.googleapis.com/books/v1/';
 const dataFolderPath = `${__dirname}/saved-data`;
 
-let spin;
-const spinMaster = (statusMsg) => {
-    if (!statusMsg) return spin.stop();
-    if (spin) spin.stop();
-    spin = new Spinner(statusMsg + '%s')
-        .setSpinnerString(15)
-        .start();
-};
-
 function findABook() {
+
     const searchQs = [
         {type: 'input', name: 'author', message: 'Enter author\'s name'}, 
         {type: 'input', name: 'title', message: 'Enter book title'}
     ];
     const selectBookQs = [
         {type: 'list', choices: [], name: 'selected', message: '\nSelect a book to save:\n'}
+    ];
+    const repeatQ = [
+        {type: 'confirm', message: '\nWould you like to add another book to your list?', name: 'addAnother'}
+    ];
+    const errorQ = [
+        {type: 'confirm', message: '\nNo results for that search! Start again?', name: 'startAgain'}
     ];
 
     inquirer
@@ -52,12 +50,20 @@ function findABook() {
         return writeFile(`${dataFolderPath}/saved-books.json`, JSON.stringify(parsedFile))
     })
     .then(() => {
-        setTimeout(() => {
-            spinMaster();
-            console.log('\nThis book has been saved!')
-        }, 2000)
+        spinMaster();
+        console.log('\nThis book has been saved!')
+        return inquirer.prompt(repeatQ);   
     })
-    .catch((err) => console.log(err))
+    .then(({addAnother}) => {
+        if (addAnother) findABook()
+    })
+    .catch((err) => {
+        console.log(err);
+        inquirer.prompt(errorQ)
+            .then(({startAgain}) => {
+                if (startAgain) findABook()
+            })
+    })
 };
 
 findABook();
