@@ -32,6 +32,7 @@ describe('promisifiedReadSecretFile', () => {
   it('returns a promise', () => {
     expect(promisifiedReadSecretFile()).toBeInstanceOf(Promise);
   });
+
   it('promise fulfils with file contents when reading file is successful', () => {
     return promisifiedReadSecretFile().then((contents) => {
       expect(fs.readFile).toHaveBeenCalledTimes(1);
