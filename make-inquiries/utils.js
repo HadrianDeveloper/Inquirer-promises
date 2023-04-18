@@ -10,6 +10,8 @@ function spinMaster(statusMsg) {
         .start();
 };
 
+// --- STARWARS helper functions and data for ---
+
 const q = {
      bookSearch: [
         {type: 'input', name: 'author', message: 'Enter author\'s name'}, 
@@ -31,25 +33,30 @@ const starQ = {
         type: 'list', name: 'film', choices: [], message: 'Which Star Wars film do you want to learn more about?'
     }],
     pickTopic: [{
-        type: 'list', name: 'topic', choices: ['starships', 'planets', 'characters'], message: 'Which area of this film would you like to learn more about?'
+        type: 'list', name: 'topic', choices: ['starships', 'planets', 'people'], message: '\nWhich area of this film would you like to learn more about?'
     }],
-    pickCast: [{
-        type: 'list', name: 'cast', choices: [], message: 'Select a character to learn more:'
+    people: [{
+        type: 'list', name: 'cast', choices: [], message: '\nSelect a character to learn more:'
     }],
-    pickPlanet: [{
-        type: 'list', name: 'planet', choices: [], message: 'Select a planet to learn more:'
+    planets: [{
+        type: 'list', name: 'planet', choices: [], message: '\nSelect a planet to learn more:'
     }],
-    moreShip: [{
-        type: 'list', name: 'ship', choices: [], message: 'Select a starship to learn more:'
+    starships: [{
+        type: 'list', name: 'ship', choices: [], message: '\nSelect a starship to learn more:'
     }]
 };
 
+function endpointFinder(url) {
+    return url.split('/')[4];
+};
+
 function prebuildQuestions(arr) {
+    const topic = endpointFinder(arr[0]);
     arr.forEach((i) => {
         axios
             .get(i)
             .then(({data}) => {
-                starQ.pickCast[0].choices.push(data.name);
+                starQ[topic][0].choices.push(data.name);
             })
             .catch((err) => console.log(err))
     })
@@ -64,9 +71,9 @@ function filmOverviewer(data) {
         characters, 
         planets, 
         starships } = data[0];
-    
-//NEXT1 push chars, planets, ships into this function to prep for NEXT2 questions
-    prebuildQuestions(characters)
+
+    [characters, planets, starships]
+        .forEach((topicArr) => prebuildQuestions(topicArr));
     
     return `Episode ${episode_id}: ${title}.\nDirected by ${director}.\n\n${opening_crawl}`
 };
