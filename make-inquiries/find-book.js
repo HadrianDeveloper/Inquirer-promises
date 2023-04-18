@@ -1,21 +1,13 @@
 const inquirer = require('inquirer');
 const axios = require('axios');
 const {writeFile, readFile} = require('fs/promises');
-const Spinner = require('cli-spinner').Spinner;
+const { spinMaster } = require('./utils');
 
 axios.defaults.baseURL = 'https://www.googleapis.com/books/v1/';
 const dataFolderPath = `${__dirname}/saved-data`;
 
-let spin;
-const spinMaster = (statusMsg) => {
-    if (!statusMsg) return spin.stop();
-    if (spin) spin.stop();
-    spin = new Spinner(statusMsg + '%s')
-        .setSpinnerString(15)
-        .start();
-};
-
 function findABook() {
+
     const searchQs = [
         {type: 'input', name: 'author', message: 'Enter author\'s name'}, 
         {type: 'input', name: 'title', message: 'Enter book title'}
@@ -67,10 +59,17 @@ function findABook() {
     })
     .catch((err) => {
         console.log(err);
+<<<<<<< HEAD
+        inquirer.prompt(errorQ)
+            .then(({startAgain}) => {
+                if (startAgain) findABook()
+            })
+=======
         return inquirer.prompt(errorQ)
     })
     .then(({startAgain}) => {
         if (startAgain) findABook()
+>>>>>>> main
     })
 };
 
