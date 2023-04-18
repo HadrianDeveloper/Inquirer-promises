@@ -50,7 +50,7 @@ function findBook() {
                 name: 'addAnother'
             }]);
         })
-        .then(({addAnother}) => {
+        .then(([{addAnother}]) => {
             if (addAnother) findBook();
         })
         .catch((err) => console.log(err));

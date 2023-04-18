@@ -23,6 +23,12 @@ function findABook() {
     const selectBookQs = [
         {type: 'list', choices: [], name: 'selected', message: '\nSelect a book to save:\n'}
     ];
+    const repeatQ = [
+        {type: 'confirm', message: '\nWould you like to add another book to your list?', name: 'addAnother'}
+    ];
+    const errorQ = [
+        {type: 'confirm', message: '\nNo results for that search! Start again?', name: 'startAgain'}
+    ];
 
     inquirer
     .prompt(searchQs)
@@ -52,12 +58,20 @@ function findABook() {
         return writeFile(`${dataFolderPath}/saved-books.json`, JSON.stringify(parsedFile))
     })
     .then(() => {
-        setTimeout(() => {
-            spinMaster();
-            console.log('\nThis book has been saved!')
-        }, 2000)
+        spinMaster();
+        console.log('\nThis book has been saved!')
+        return inquirer.prompt(repeatQ);   
     })
-    .catch((err) => console.log(err))
+    .then(({addAnother}) => {
+        if (addAnother) findABook()
+    })
+    .catch((err) => {
+        console.log(err);
+        return inquirer.prompt(errorQ)
+    })
+    .then(({startAgain}) => {
+        if (startAgain) findABook()
+    })
 };
 
 findABook();
