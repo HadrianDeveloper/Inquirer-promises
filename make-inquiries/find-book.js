@@ -25,37 +25,39 @@ function findABook() {
     ];
 
     inquirer
-        .prompt(searchQs)
-        .then(({author, title}) => {
-            spinMaster('Fetching books from GoogleAPI...');
-            return axios.get(`volumes?q=${title}+inauthor:${author}`)
-        })
-        .then(({data}) => {
+    .prompt(searchQs)
+    .then(({author, title}) => {
+        spinMaster('Fetching books from GoogleAPI...');
+        return axios.get(`volumes?q=${title}+inauthor:${author}`)
+    })
+    .then(({data}) => {
+        spinMaster();
+        for (let x = 0; x < 5; x++) {
+            const d = data.items[x].volumeInfo;
+            selectBookQs[0].choices.push(JSON.stringify({
+                title: d.title,
+                author: d.authors,
+                publishDate: d.publishedDate
+            }));
+        };
+        return Promise.all([
+            inquirer.prompt(selectBookQs), 
+            readFile(`${dataFolderPath}/saved-books.json`, 'utf8')
+        ])
+    })
+    .then(([{selected}, arr]) => {
+        spinMaster('Saving to file...')
+        const parsedFile = JSON.parse(arr);
+            parsedFile.push(JSON.parse(selected));
+        return writeFile(`${dataFolderPath}/saved-books.json`, JSON.stringify(parsedFile))
+    })
+    .then(() => {
+        setTimeout(() => {
             spinMaster();
-            for (let x = 0; x < 5; x++) {
-                const d = data.items[x].volumeInfo;
-                selectBookQs[0].choices.push(JSON.stringify({
-                    title: d.title,
-                    author: d.authors,
-                    publishDate: d.publishedDate
-                }));
-            };
-            return Promise.all([
-                inquirer.prompt(selectBookQs), 
-                readFile(`${dataFolderPath}/saved-books.json`, 'utf8')
-            ])
-        })
-        .then(([{selected}, arr]) => {
-            spinMaster('Saving to file...')
-            const parsedFile = JSON.parse(arr);
-                parsedFile.push(JSON.parse(selected));
-            return writeFile(`${dataFolderPath}/saved-books.json`, JSON.stringify(parsedFile))
-        })
-        .then(() => {
-            spinMaster();
-            console.log('This book has been saved!')
-        })
-        .catch((err) => console.log(err))
+            console.log('\nThis book has been saved!')
+        }, 2000)
+    })
+    .catch((err) => console.log(err))
 };
 
 findABook();
