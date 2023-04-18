@@ -59,17 +59,10 @@ function findABook() {
     })
     .catch((err) => {
         console.log(err);
-<<<<<<< HEAD
         inquirer.prompt(errorQ)
             .then(({startAgain}) => {
                 if (startAgain) findABook()
             })
-=======
-        return inquirer.prompt(errorQ)
-    })
-    .then(({startAgain}) => {
-        if (startAgain) findABook()
->>>>>>> main
     })
 };
 
