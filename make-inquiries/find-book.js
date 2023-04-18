@@ -1,29 +1,29 @@
 const inquirer = require('inquirer');
 const axios = require('axios');
 const {writeFile, readFile} = require('fs/promises');
-const { spinMaster } = require('./utils');
+const { spinMaster, q } = require('./utils');
 
 axios.defaults.baseURL = 'https://www.googleapis.com/books/v1/';
 const dataFolderPath = `${__dirname}/saved-data`;
 
 function findABook() {
 
-    const searchQs = [
-        {type: 'input', name: 'author', message: 'Enter author\'s name'}, 
-        {type: 'input', name: 'title', message: 'Enter book title'}
-    ];
-    const selectBookQs = [
-        {type: 'list', choices: [], name: 'selected', message: '\nSelect a book to save:\n'}
-    ];
-    const repeatQ = [
-        {type: 'confirm', message: '\nWould you like to add another book to your list?', name: 'addAnother'}
-    ];
-    const errorQ = [
-        {type: 'confirm', message: '\nNo results for that search! Start again?', name: 'startAgain'}
-    ];
+    // const searchQs = [
+    //     {type: 'input', name: 'author', message: 'Enter author\'s name'}, 
+    //     {type: 'input', name: 'title', message: 'Enter book title'}
+    // ];
+    // const selectBookQs = [
+    //     {type: 'list', choices: [], name: 'selected', message: '\nSelect a book to save:\n'}
+    // ];
+    // const repeatQ = [
+    //     {type: 'confirm', message: '\nWould you like to add another book to your list?', name: 'addAnother'}
+    // ];
+    // const errorQ = [
+    //     {type: 'confirm', message: '\nNo results for that search! Start again?', name: 'startAgain'}
+    // ];
 
     inquirer
-    .prompt(searchQs)
+    .prompt(q.bookSearch)
     .then(({author, title}) => {
         spinMaster('Fetching books from GoogleAPI...');
         return axios.get(`volumes?q=${title}+inauthor:${author}`)
@@ -39,7 +39,7 @@ function findABook() {
             }));
         };
         return Promise.all([
-            inquirer.prompt(selectBookQs), 
+            inquirer.prompt(q.selectBook), 
             readFile(`${dataFolderPath}/saved-books.json`, 'utf8')
         ])
     })
@@ -52,14 +52,14 @@ function findABook() {
     .then(() => {
         spinMaster();
         console.log('\nThis book has been saved!')
-        return inquirer.prompt(repeatQ);   
+        return inquirer.prompt(q.anotherSearch);   
     })
     .then(({addAnother}) => {
         if (addAnother) findABook()
     })
     .catch((err) => {
         console.log(err);
-        inquirer.prompt(errorQ)
+        inquirer.prompt(q.tryAgain)
             .then(({startAgain}) => {
                 if (startAgain) findABook()
             })
