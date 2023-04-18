@@ -1,9 +1,11 @@
 # Project overview
-For this project, I created a Command Line Interface (CLI) using the `Inquirer.js` package which guides users to search and save data from two external APIs: GoogleBooks, PokemonAPI. Async functionality is handled by `Promises`, and the `Axios` and `fs/promises` libraries.
+For this project, I created a Command Line Interface (CLI) with dynamic loading symbols and update logs on the console to show what is happening during the execution of the async code, using `Inquirer.js` and `CLI-spinner` packages. The CLI guides users to search and save data from two external APIs: GoogleBooks, PokemonAPI. 
+
+Async functionality is handled by `Promises`, and the `Axios` and `fs/promises` libraries.
 
 # Project structure
 ## /make-inquiries
-The CLI which will prompt the user with a series of questions to find, select and save locally a Pokemon data into a JSON file, and book data appended into a text file. The CLI will offer the user to find more books/Pokemon until they opt out.
+The CLI which will prompt the user with a series of questions to find, select and save locally a Pokemon data into a JSON file, and book data into a text file (fileAppend). The CLI will offer the user to find more books/Pokemon until they opt out.
 
 
 ## Challenges in detail
