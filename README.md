@@ -3,11 +3,10 @@ For this project, I created a Command Line Interface (CLI) using the `Inquirer.j
 
 # Project structure
 ## /make-inquiries
-The CLI which will prompt the user with a series of questions to find, select and save a Pokemon or a book in local persistant storage. Selected book data is stored in JSON and Pokemon data in a text file. The CLI will offer the user to find more books/Pokemon until they opt out.
+The CLI which will prompt the user with a series of questions to find, select and save locally a Pokemon data into a JSON file, and book data appended into a text file. The CLI will offer the user to find more books/Pokemon until they opt out.
 
 
-
-## Challenges
+## Challenges in detail
 
 ### **1. use `fs/promises` to read a file**
 
