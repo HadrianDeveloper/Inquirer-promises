@@ -5,16 +5,39 @@ exports.fetchData = (path) => {
     return axios.get(path);
 };
 
-function questionBuilder(choices, name, msg) {
+let tempStorage = [];
+
+function giveChoices() {
+    return tempStorage.map((i) => {
+        return i.title
+    })
+}
+
+exports.questionBuilder = (name, msg, hardOptions) => {
     return [{
         type: 'list',
-        choices: choices,
+        choices: hardOptions || giveChoices,
         name: name,
         message: msg
     }];
 };
 
 exports.prepareQuestion = (arr, keyName, name, msg) => {
-    const choicesArr =  arr.map((i) => i[keyName]);
-    return questionBuilder(choicesArr, name, msg);
+    tempStorage =  arr.map((i) => {
+        return {[keyName]: i[keyName], url: i.url}
+    });
+    return this.questionBuilder(name, msg);
 };
+
+
+
+/*
+films 
+"url": "https://swapi.dev/api/films/1/"
+
+people
+"url": "https://swapi.dev/api/people/1/"
+
+planets
+"url": "https://swapi.dev/api/planets/2/"
+*/
