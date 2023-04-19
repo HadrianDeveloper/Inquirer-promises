@@ -1,23 +1,27 @@
-const { fetchData, prepareQuestion, questionBuilder } = require("./saved-data/utils-starwars");
+const { fetchData, questionBuilder, createTempUrlStorage, fetchEachData } = require("./utils-starwars");
 const inquirer = require('inquirer');
 
-const filmMenu = ['planets', 'people', 'starships'];
+let currentLinks = {};
+let currentFilm = '';
+let currentTopic = '';
+let currentTopicLinks = {};
 
 fetchData('films')
     .then(({data}) => {
-        const pickFilm = prepareQuestion(
-            data.results, 'title', 'film', 'Pick a Starwars film'
-        );
-        return inquirer.prompt(pickFilm)
+        currentLinks = createTempUrlStorage(data.results, 'title');
+        const q = '\nPick a Starwars film to explore';
+        return inquirer.prompt(questionBuilder(currentLinks, 'title', q))
     })
-    .then(({film}) => {
-        const pickTopic = questionBuilder(
-           'topic', 'Pick a topic to explore for this film', filmMenu
-        );
-        return inquirer.prompt(pickTopic)
+    .then(({title}) => {
+        currentFilm = title;
+        const q = '\nWhich area of this film do you want to explore?';
+        return inquirer.prompt(questionBuilder(null, 'topic', q))
     })
-    .then(({topic}) => console.log(topic))
+    .then(({topic}) => {
+        currentTopic = topic;
+        return fetchData(`${currentLinks[currentFilm]}`)
+    })
+    .then(({data}) => {
+        console.log(Data)
+    })
     .catch((err) => console.log(err))
-
-
-
