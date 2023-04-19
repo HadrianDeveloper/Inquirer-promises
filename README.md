@@ -7,6 +7,9 @@ Async functionality is handled by `Promises`, and the `Axios` and `fs/promises` 
 ## /make-inquiries
 The CLI which will prompt the user with a series of questions to find, select and save locally a Pokemon data into a JSON file, and book data into a text file (fileAppend). The CLI will offer the user to find more books/Pokemon until they opt out.
 
+## /starwars files
+This will be tidied up in due course, after revising advanced Promise features.
+
 
 ## Challenges in detail
 
