@@ -3,8 +3,6 @@ const { starQ, filmOverviewer }  = require('./utils');
 const axios = require('axios');
 axios.defaults.baseURL = 'https://swapi.dev/api';
 
-
-
 axios.get('/films')
     .then(({data}) => {
         data.results.forEach((film) => {
