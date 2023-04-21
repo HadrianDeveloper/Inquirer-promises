@@ -17,7 +17,7 @@ function findABook() {
         spinMaster();
         for (let x = 0; x < 5; x++) {
             const d = data.items[x].volumeInfo;
-            selectBookQs[0].choices.push(JSON.stringify({
+            q.selectBook[0].choices.push(JSON.stringify({
                 title: d.title,
                 author: d.authors,
                 publishDate: d.publishedDate
@@ -32,7 +32,7 @@ function findABook() {
         spinMaster('Saving to file...')
         const parsedFile = JSON.parse(arr);
             parsedFile.push(JSON.parse(selected));
-        return writeFile(`${dataFolderPath}/saved-books.json`, JSON.stringify(parsedFile))
+            return writeFile(`${dataFolderPath}/saved-books.json`, JSON.stringify(parsedFile, null, 2)) 
     })
     .then(() => {
         spinMaster();

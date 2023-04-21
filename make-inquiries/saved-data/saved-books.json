@@ -1,58 +1,158 @@
 [
   {
     "title": "Ghost Stories",
-    "author": ["Charles Dickens"],
+    "author": [
+      "Charles Dickens"
+    ],
     "publishDate": "2009"
   },
   {
     "title": "Great Expectations",
-    "author": ["Charles Dickens"],
+    "author": [
+      "Charles Dickens"
+    ],
     "publishDate": "1881"
   },
   {
     "title": "The BFG",
-    "author": ["Roald Dahl", "David Wood"],
+    "author": [
+      "Roald Dahl",
+      "David Wood"
+    ],
     "publishDate": "1993"
   },
-  { "title": "Ghosts", "author": ["Adrian Plass"], "publishDate": "2003" },
+  {
+    "title": "Ghosts",
+    "author": [
+      "Adrian Plass"
+    ],
+    "publishDate": "2003"
+  },
   {
     "title": "The Naming of Animals",
-    "author": ["Adrian Room"],
+    "author": [
+      "Adrian Room"
+    ],
     "publishDate": "1993"
   },
   {
     "title": "My Story",
-    "author": ["Priscilla Ann Perkins-Perreault-Daw"],
+    "author": [
+      "Priscilla Ann Perkins-Perreault-Daw"
+    ],
     "publishDate": "2020-03-13"
   },
   {
     "title": "Stand and Deliver",
-    "author": ["Adam Ant"],
+    "author": [
+      "Adam Ant"
+    ],
     "publishDate": "2008-09-04"
   },
   {
     "title": "Poetry in the Junior School",
-    "author": ["Bernard Adrian Hayes"],
+    "author": [
+      "Bernard Adrian Hayes"
+    ],
     "publishDate": "1988"
   },
   {
     "title": "Bad Apples",
-    "author": ["Adrian Furnham", "John Taylor"],
+    "author": [
+      "Adrian Furnham",
+      "John Taylor"
+    ],
     "publishDate": "2011-02-07"
   },
   {
     "title": "Anthony Hopkins' Snowdonia",
-    "author": ["Anthony Hopkins"],
+    "author": [
+      "Anthony Hopkins"
+    ],
     "publishDate": "1995-07"
   },
   {
     "title": "Hop O' My Thumb 1880",
-    "author": ["Iacob Adrian"],
+    "author": [
+      "Iacob Adrian"
+    ],
     "publishDate": "2015-01-13"
   },
   {
     "title": "Index to Poetry in Periodicals, American Poetic Renaissance, 1915-1919",
-    "author": ["Granger Book Co. Editorial Board"],
+    "author": [
+      "Granger Book Co. Editorial Board"
+    ],
     "publishDate": "1981"
+  },
+  {
+    "title": "Charles Dickens' Children Stories Re Told BY His Grand Daughter",
+    "author": [
+      "Charles Dickens"
+    ],
+    "publishDate": "2020-07-31"
+  },
+  {
+    "title": "Ten Girls from Dickens",
+    "author": [
+      "Charles Dickens"
+    ],
+    "publishDate": "2010-12"
+  },
+  {
+    "title": "Scrooge Meets the Little Match Girl",
+    "author": [
+      "E. P. Scates"
+    ],
+    "publishDate": "2015-07-31"
+  },
+  {
+    "title": "The little match girl",
+    "author": [
+      "Charles Dickens"
+    ],
+    "publishDate": "1999"
+  },
+  {
+    "title": "Ten Girls from Dickens",
+    "author": [
+      "Charles Dickens"
+    ],
+    "publishDate": "2010-12"
+  },
+  {
+    "title": "Ten Girls from Dickens",
+    "author": [
+      "Charles Dickens"
+    ],
+    "publishDate": "2010-12"
+  },
+  {
+    "title": "Charles Dickens' Children Stories Re Told BY His Grand Daughter",
+    "author": [
+      "Charles Dickens"
+    ],
+    "publishDate": "2020-07-31"
+  },
+  {
+    "title": "One Pair of Hands",
+    "author": [
+      "Monica Dickens"
+    ],
+    "publishDate": "2011"
+  },
+  {
+    "title": "Head on a Pike",
+    "author": [
+      "Matt Pike"
+    ],
+    "publishDate": "2021-09-07"
+  },
+  {
+    "title": "Off the Cuff",
+    "author": [
+      "Lee Briers"
+    ],
+    "publishDate": "2013-11-02"
   }
 ]
