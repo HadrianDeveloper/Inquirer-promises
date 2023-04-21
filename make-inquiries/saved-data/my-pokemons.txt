@@ -11,3 +11,19 @@ Abilities: vital-spirit, inner-focus, defiant,
 Pokemon name: braixen
 Pokemon ID: 654
 Abilities: blaze, magician, 
+
+Pokemon name: garchomp
+Pokemon ID: 445
+Abilities: sand-veil, rough-skin, 
+
+Pokemon name: gabite
+Pokemon ID: 444
+Abilities: sand-veil, rough-skin, 
+
+Pokemon name: celesteela
+Pokemon ID: 797
+Abilities: beast-boost, 
+
+Pokemon name: rhyperior
+Pokemon ID: 464
+Abilities: lightning-rod, solid-rock, reckless, 

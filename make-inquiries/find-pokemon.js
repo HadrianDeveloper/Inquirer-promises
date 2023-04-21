@@ -4,15 +4,10 @@ const { appendFile } = require('fs/promises');
 
 function findAPokemon() {
 
-    const questions = [{
-        type: 'list',
-        choices: ['Pokemon ID', 'Pokemon name'],
-        name: 'searchType',
-        message: 'How would you like to search for Pokemon?'
-    }, {
+    const searchById = [{
         type: 'input',
-        name: 'term',
-        message: 'Enter'
+        name: 'id',
+        message: 'How the ID of the Pokemon you are looking for:'
     }];
 
     const anotherSearch = [{
@@ -22,18 +17,18 @@ function findAPokemon() {
     }];
 
     inquirer
-        .prompt(questions)
-        .then(({searchType, term}) => {
-            const base = 'https://pokeapi.co/api/v2/pokemon/';
-                return axios.get(base + term)
+        .prompt(searchById)
+        .then(({id}) => {
+            return axios.get(`https://pokeapi.co/api/v2/pokemon/${id}`)
         })
         .then(({data}) => {
-            let abs = '';
+            console.log(`You selected ${data.name}!`)
+            let pokeAbilities = '';
                 data.abilities.forEach(a => {
-                    abs += `${a.ability.name}, `
+                    pokeAbilities += `${a.ability.name}, `
                 });
             let body = 
-                `\nPokemon name: ${data.name}\nPokemon ID: ${data.id}\nAbilities: ${abs}\n`
+                `\nPokemon name: ${data.name}\nPokemon ID: ${data.id}\nAbilities: ${pokeAbilities}\n`
 
             return appendFile(`${__dirname}/saved-data/my-pokemons.txt`, body, 'utf8')
         })
